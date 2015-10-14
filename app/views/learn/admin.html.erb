@@ -1,0 +1,23 @@
+<div class="main-page">
+    <section class="chat">
+        <h1>지금까지 배운 답변</h1>
+        <li>
+            Question : Answer
+        </li>
+        <% talks = Talk.all %>
+        <% talks.each do |p| %>
+    
+        <li>
+            <%= p.ask %> : <%= p.answer %>
+            <%= form_tag '/learn/:id', method: 'delete' do %>
+                <input type="hidden" name="ip" value=<%=p.id%>>
+                <input type="submit" value="삭제">
+            <% end %>
+            <%= form_tag '/learn/:id/edit', method: 'get' do %>
+                <input type="hidden" name="ip" value=<%=p.id%>>
+                <input type="submit" value="수정">
+            <% end %>
+        </li>
+        <% end %>
+    </section>
+</div>

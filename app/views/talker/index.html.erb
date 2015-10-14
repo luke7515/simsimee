@@ -1,1 +1,78 @@
-<h1>talker index 페이지입니다.</h1>
+<div class="main-page">
+  <a href="/learn">
+    <button class="learn-button">가르치러 가기</button>
+  </a>
+  
+  <section class="chat">
+    <% @talks.each do |p| %>
+        <div class="right">
+          <div class="profile">
+            <div class="icon"></div>
+            <div class="name">User</div>
+          </div>
+          <div class="balloon">
+            <div class="tail"></div>
+            <div class="text"><%= p.ask %></div>
+          </div>
+        </div>      
+        <div class="left">
+          <div class="profile">
+            <div class="icon"></div>
+            <div class="name">Bot</div>
+          </div>
+          <div class="balloon">
+            <div class="tail"></div>
+            <div class="text"><%= p.answer %></div>
+          </div>
+        </div>
+
+
+    <% end %>
+    <% @chats.each do |p| %>
+      <% if p.chat_type == "user" %>
+        <div class="right">
+          <div class="profile">
+            <div class="icon"></div>
+            <div class="name">User</div>
+          </div>
+          <div class="balloon">
+            <section id="<%=p.id%>">
+              <div class="tail"></div>
+              <div class="text"><%= p.chat_content %></div>
+            </section>
+          </div>
+        </div>
+      <% else %>
+        <div class="left">
+          <div class="profile">
+            <div class="icon"></div>
+            <div class="name">Bot</div>
+          </div>
+          <div class="balloon">
+            <section id="<%=p.id%>">
+              <div class="tail"></div>
+              <div class="text"><%= p.chat_content %></div>
+            </section>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+  </section>
+
+  <%= form_tag '/talker', method: 'post', class: "chat-form" do %>
+    <input type="text" placeholder="입력..." name="ask">
+    <input type="submit" value="전송">
+  <% end %>
+</div>
+<form action="/">
+  <input type="text" name="keyword" placeholder="찾을 내용을 입력하시오">
+  <input type="submit" value="검색">
+  <% if @tempid != nil%>
+
+  <% end %>
+</form>
+<a href=#"<%=@tempid%>"><%=@tempask%>   <%=@tempid%></a>
+
+
+

@@ -1,0 +1,16 @@
+<h1>관리자 페이지 EDIT</h1>
+
+<div class="learn-page">
+  <h1 class="title">저한테 말을 가르쳐주세요!</h1>
+  <%= form_tag '/learn/:id', method: 'put', class: "learn-form" do %>
+    <input type="hidden" name="ip" value="<%=@temp.id%>">
+    <h2>이렇게 물어보면~</h2>
+    <textarea name="ask" rows="5" required><%=@temp.ask%></textarea>
+    <h2>이렇게 답할거에요~</h2>
+    <textarea name="answer" rows="5" required><%=@temp.answer%> </textarea>
+    <input type="submit" value="가르치기">
+  <% end %>
+  <a href="/">
+    <div class="back-button">돌아가기</div>
+  </a>
+</div>

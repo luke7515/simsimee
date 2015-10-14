@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Talker</title>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="wrapper">
+    <form action="/adminpg">
+      <input type="text" name="password" placeholder="비밀번호">
+      <input type="submit" value="관리자페이지 입장">
+    </form>
+    <p><%= @temp %></p>
+
     <div class="iphone6 black">
       <div class="power"></div>
       <div class="manner-mode"></div>
@@ -19,6 +25,8 @@
       <div class="speaker"></div>
       <div class="screen">
         <%= yield %>
+        
+
       </div>
       <a href="/">
         <div class="home-button"></div>
@@ -44,4 +52,5 @@
 
 
 </body>
+
 </html>
