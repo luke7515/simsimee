@@ -1,15 +1,21 @@
 class TalkerController < ApplicationController
   def index
+
+
     @chats = Chat.all
     @talks = Talk.all
-    tt = Chat.where(chat_content: params[:keyword]).sample
+    tt = Chat.where(chat_content: params[:keyword]).all
     if tt != nil
-      @tempask = tt.chat_content
-      @tempid = tt.id
-    else
-      @tempask = nil
-      @tempid = nil
+
+      @tempask = []
+      @tempid = []
+      tt.each_with_index do |p, index|
+        @tempask << tt[index].chat_content
+        @tempid << tt[index].id
+      end
+
     end
+
   end
   def create
     if Talk.exists?(:ask => params[:ask])

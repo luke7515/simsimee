@@ -36,10 +36,15 @@
             <div class="name">User</div>
           </div>
           <div class="balloon">
-            <section id="<%=p.id%>">
+            <% if @tempid.include? p.id %>
+              <a name=<%=p.id%>></a>
+              <div class="tail"></div>
+              <div class="text"><span style="background-color: #FFFFFF"><%= p.chat_content %></span></div>
+            <% else %>
+              <a name=<%=p.id%>></a>
               <div class="tail"></div>
               <div class="text"><%= p.chat_content %></div>
-            </section>
+            <% end %>
           </div>
         </div>
       <% else %>
@@ -49,22 +54,35 @@
             <div class="name">Bot</div>
           </div>
           <div class="balloon">
-            <section id="<%=p.id%>">
+            <% if @tempid.include? p.id %>
+              <a name=<%=p.id%>></a>
+              <div class="tail"></div>
+              <div class="text"><mark><%= p.chat_content %></mark></div>            
+            <% else %>
+              <a name=<%=p.id%>></a>
               <div class="tail"></div>
               <div class="text"><%= p.chat_content %></div>
-            </section>
+            <% end %>
           </div>
         </div>
       <% end %>
     <% end %>
-
+    <a name = "bottom"></a>
   </section>
-
+    <a href="#bottom"></a>
   <%= form_tag '/talker', method: 'post', class: "chat-form" do %>
     <input type="text" placeholder="입력..." name="ask">
     <input type="submit" value="전송">
+
   <% end %>
+
 </div>
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+
 <form action="/">
   <input type="text" name="keyword" placeholder="찾을 내용을 입력하시오">
   <input type="submit" value="검색">
@@ -72,7 +90,16 @@
 
   <% end %>
 </form>
-<a href=#"<%=@tempid%>"><%=@tempask%>   <%=@tempid%></a>
+
+    
+<% @tempid.each_with_index do |p, i| %>
+  <li>
+    <a href="#<%=p%>"><%=i+1%>번째 말 한 부분으로 이동</a><br>
+  </li>
+<% end %>
+<% if @tempid.length == 0 %>
+  <p>Not Found</p>
+<% end %>
 
 
 
